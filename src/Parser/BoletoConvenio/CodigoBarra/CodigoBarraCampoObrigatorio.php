@@ -2,9 +2,6 @@
 
 namespace BoletoKit\Parser\BoletoConvenio\CodigoBarra;
 
-use BoletoKit\ModuleCalculate\Module10Calculate;
-use BoletoKit\ModuleCalculate\Module11Calculate;
-
 class CodigoBarraCampoObrigatorio extends CodigoBarraCampo
 {
     public function getIdentificacaoProduto()
@@ -42,7 +39,7 @@ class CodigoBarraCampoObrigatorio extends CodigoBarraCampo
         $methods = get_class_methods($this);
 
         foreach ($methods as $method) {
-            if (in_array($method, ['isValid', '__construct'])) {
+            if (in_array($method, ['isValid', '__construct', 'canUseModule10'])) {
                 continue;
             }
 
@@ -62,19 +59,6 @@ class CodigoBarraCampoObrigatorio extends CodigoBarraCampo
         }
 
         if (! in_array($this->getCodigoMoeda(), [6, 7, 8, 9])) {
-            return false;
-        }
-
-        $usaModulo10 = $this->canUseModule10();
-        $rawForModuleCalculate = $this->getIdentificacaoProduto() . $this->getIdentificacaoSegmento() . $this->getCodigoMoeda();
-
-        if ($usaModulo10) {
-            $digitoVerificadorEsperado = (new Module10Calculate())->calculate($rawForModuleCalculate);
-        } else {
-            $digitoVerificadorEsperado = (new Module11Calculate())->calculate($rawForModuleCalculate);
-        }
-
-        if ($this->getDigitoVerificador() != $digitoVerificadorEsperado) {
             return false;
         }
 

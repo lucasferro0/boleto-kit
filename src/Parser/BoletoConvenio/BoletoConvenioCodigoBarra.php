@@ -22,6 +22,11 @@ class BoletoConvenioCodigoBarra
         return $this->codigoBarra;
     }
 
+    public function getCodigoBarraSemDigitoVerificador()
+    {
+        return substr($this->getCodigoBarra(), 0, 3) . substr($this->getCodigoBarra(), 4, 44);
+    }
+
     public function getCampoObrigatorio()
     {
         $campoObrigatorio = substr($this->codigoBarra, 0, 15);
@@ -40,11 +45,26 @@ class BoletoConvenioCodigoBarra
             return false;
         }
 
-        if (! $this->getCampoObrigatorio()->isValid()) {
+        $campoObrigatorio = $this->getCampoObrigatorio();
+
+        if (! $campoObrigatorio->isValid()) {
             return false;
         }
 
         if (! $this->getCampoLivre()->isValid()) {
+            return false;
+        }
+
+        $usaModulo10 = $campoObrigatorio->canUseModule10();
+        $rawForModuleCalculate = $this->getCodigoBarraSemDigitoVerificador();
+
+        if ($usaModulo10) {
+            $digitoVerificadorEsperado = (new Module10Calculate())->calculate($rawForModuleCalculate);
+        } else {
+            $digitoVerificadorEsperado = (new Module11Calculate())->calculate($rawForModuleCalculate);
+        }
+
+        if ($campoObrigatorio->getDigitoVerificador() != $digitoVerificadorEsperado) {
             return false;
         }
 
