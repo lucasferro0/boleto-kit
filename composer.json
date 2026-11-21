@@ -1,0 +1,25 @@
+{
+    "name": "lucasferro0/boleto-kit",
+    "description": "Biblioteca PHP para validação e conversão entre código de barras e linha digitável de boletos bancários e convênios (FEBRABAN).",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BoletoKit\\": "src/",
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Lucas Ferro"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    }
+}
