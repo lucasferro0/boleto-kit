@@ -63,6 +63,7 @@ class BoletoBancarioLinhaDigitavelTest extends TestCase
         $this->assertEquals(substr($linhaDigitavelRaw, 32, 1), $boletoBancarioLinhaDigitavel->getCampo4()->getDigitoVerificador());
 
         $this->assertEquals(substr($linhaDigitavelRaw, 33, 14), $boletoBancarioLinhaDigitavel->getCampo5());
-        $this->assertEquals(substr($linhaDigitavelRaw, 33, 14), $boletoBancarioLinhaDigitavel->getCampo5()->getIspb());
+        $this->assertEquals(substr($linhaDigitavelRaw, 33, 4), $boletoBancarioLinhaDigitavel->getCampo5()->getZeros());
+        $this->assertEquals(substr($linhaDigitavelRaw, 37, 10), $boletoBancarioLinhaDigitavel->getCampo5()->getIspb());
     }
 }
