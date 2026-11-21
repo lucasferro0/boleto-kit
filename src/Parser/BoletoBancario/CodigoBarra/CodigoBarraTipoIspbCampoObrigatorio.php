@@ -2,8 +2,6 @@
 
 namespace BoletoKit\Parser\BoletoBancario\CodigoBarra;
 
-use BoletoKit\ModuleCalculate\Module11Calculate;
-
 class CodigoBarraTipoIspbCampoObrigatorio extends CodigoBarraCampo
 {
     public function getCodigoFebraban()
@@ -48,12 +46,6 @@ class CodigoBarraTipoIspbCampoObrigatorio extends CodigoBarraCampo
         }
 
         if ($this->getZero() != 0) {
-            return false;
-        }
-
-        $digitoVerificadorEsperado = (new Module11Calculate())->calculate($this->getCodigoFebraban() . $this->getZero());
-
-        if ($this->getDigitoVerificador() != $digitoVerificadorEsperado) {
             return false;
         }
 

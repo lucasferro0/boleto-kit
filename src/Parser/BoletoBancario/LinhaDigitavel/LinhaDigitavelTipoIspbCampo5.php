@@ -11,14 +11,23 @@ class LinhaDigitavelTipoIspbCampo5
         $this->value = $value;
     }
 
+    public function getZeros()
+    {
+        return substr($this->value, 0, 4);
+    }
+
     public function getIspb()
     {
-        return $this->value;
+        return substr($this->value, 4, 10);
     }
 
     public function isValid()
     {
-        if ($this->getIspb() == str_repeat('0', 14)) {
+        if ($this->getIspb() == str_repeat('0', 10)) {
+            return false;
+        }
+
+        if ($this->getZeros() != str_repeat('0', 4)) {
             return false;
         }
 

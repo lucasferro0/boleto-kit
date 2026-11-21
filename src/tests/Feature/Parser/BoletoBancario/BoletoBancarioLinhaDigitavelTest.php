@@ -39,7 +39,7 @@ class BoletoBancarioLinhaDigitavelTest extends TestCase
 
     public function test_se_extrai_campos_corretamente_tipo_ispb()
     {
-        $linhaDigitavelRaw = '98807094274461830589804858220173726440000200000';
+        $linhaDigitavelRaw = '98807094244461830589804858220173000000018236120';
 
         $boletoBancarioLinhaDigitavel = new BoletoBancarioLinhaDigitavel($linhaDigitavelRaw);
 

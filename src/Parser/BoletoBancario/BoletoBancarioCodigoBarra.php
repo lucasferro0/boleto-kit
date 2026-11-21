@@ -65,7 +65,7 @@ class BoletoBancarioCodigoBarra
             return false;
         }
 
-        $codigoBarraSemDigitoVerificador = substr($codigoBarra, 0, 4) . substr($codigoBarra, 5, 39);
+        $codigoBarraSemDigitoVerificador = $this->getCodigoBarraSemDigitoVerificador();
 
         $digitoVerificadorEsperado = (new Module11Calculate())->calculate($codigoBarraSemDigitoVerificador);
 
@@ -131,8 +131,10 @@ class BoletoBancarioCodigoBarra
 
         $campo4 = $campoObrigatorio->getDigitoVerificador();
 
+        $zeros = $campoObrigatorio->getZeros();
+
         $campo5 = $campoObrigatorio->getIspb();
 
-        return "{$campo1}{$campo2}{$campo3}{$campo4}{$campo5}";
+        return "{$campo1}{$campo2}{$campo3}{$campo4}{$zeros}{$campo5}";
     }
 }

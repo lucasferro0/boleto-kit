@@ -175,12 +175,13 @@ class BoletoBancarioLinhaDigitavel
         $codigoFebraban = $campo1->getCodigoFebraban();
         $zero = $campo1->getZero();
         $digitoVerificador = $campo4->getDigitoVerificador();
+        $zeros = $campo5->getZeros();
         $ispb = $campo5->getIspb();
         $pedacoCodigoBarra1 = $campo1->getPedacoCodigoBarra();
         $pedacoCodigoBarra2 = $campo2->getPedacoCodigoBarra();
         $pedacoCodigoBarra3 = $campo3->getPedacoCodigoBarra();
 
-        $campoObrigatorio = "{$codigoFebraban}{$zero}{$digitoVerificador}{0000}{$ispb}";
+        $campoObrigatorio = "{$codigoFebraban}{$zero}{$digitoVerificador}{$zeros}{$ispb}";
         $campoLivre = "{$pedacoCodigoBarra1}{$pedacoCodigoBarra2}{$pedacoCodigoBarra3}";
 
         return new BoletoBancarioCodigoBarra("{$campoObrigatorio}{$campoLivre}");

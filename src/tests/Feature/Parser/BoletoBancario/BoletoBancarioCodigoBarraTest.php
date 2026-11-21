@@ -27,7 +27,7 @@ class BoletoBancarioCodigoBarraTest extends TestCase
 
     public function test_se_extrai_campo_obrigatorio_e_livre_corretamente_tipo_ispb()
     {
-        $codigoBarraRaw = '98800000400002000007094244618305890485822017';
+        $codigoBarraRaw = '98801000000182361207094244618305890485822017';
 
         $boletoBancarioCodigoBarra = new BoletoBancarioCodigoBarra($codigoBarraRaw);
         
