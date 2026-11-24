@@ -11,13 +11,14 @@ Biblioteca PHP para **validar** e **converter** código de barras e linha digit�
 - Validação de código de barras e linha digitável pelos dígitos verificadores (módulo 10 e módulo 11)
 - Conversão de **código de barras → linha digitável** e de **linha digitável → código de barras**
 - Suporte a **boleto bancário** (cobrança) e **boleto de convênio** (contas de consumo, tributos etc.)
+- Suporte a boleto bancário no formato **ISPB** (código de barras iniciado por `988`)
 - Detecção automática do tipo de boleto
 - Aceita valores formatados (com pontos, espaços e hífens)
-- Sem dependências externas
+- Sem dependências de runtime (apenas PHP)
 
 ## Requisitos
 
-- PHP 7.4 ou superior
+- PHP 7.4 (`^7.4`, conforme `composer.json`)
 
 ## Instalação
 
@@ -75,6 +76,13 @@ $boleto->toWritableLine('26099264400002000002547643928578012461618527');
 
 $boleto->toBarcode('26092547644392857801224616185278926440000200000');
 // "26099264400002000002547643928578012461618527"
+
+// Formato ISPB (código de barras iniciado por 988) usa os mesmos métodos
+$boleto->toWritableLine('98801000000182361207094244618305890485822017');
+// "98807094244461830589804858220173100000018236120"
+
+$boleto->toBarcode('98807094244461830589804858220173100000018236120');
+// "98801000000182361207094244618305890485822017"
 ```
 
 ### Boleto de convênio
@@ -126,12 +134,12 @@ try {
 
 Exceções disponíveis em `BoletoKit\Exceptions` (todas estendem `\Exception`):
 
-| Exceção | Lançada quando |
-| --- | --- |
-| `BoletoKitInvalidBoletoBancarioBarcodeException` | Código de barras de boleto bancário inválido |
-| `BoletoKitInvalidBoletoBancarioWritableLineException` | Linha digitável de boleto bancário inválida |
-| `BoletoKitInvalidBoletoConvenioBarcodeException` | Código de barras de boleto de convênio inválido |
-| `BoletoKitInvalidBoletoConvenioWritableLineException` | Linha digitável de boleto de convênio inválida |
+| Exceção | Lançada por | Mensagem |
+| --- | --- | --- |
+| `BoletoKitInvalidBoletoBancarioBarcodeException` | `boletoBancario()->toWritableLine()` | `Código de barra de boleto bancário inválido.` |
+| `BoletoKitInvalidBoletoBancarioWritableLineException` | `boletoBancario()->toBarcode()` | `Linha digitável de boleto bancário inválida.` |
+| `BoletoKitInvalidBoletoConvenioBarcodeException` | `boletoConvenio()->toWritableLine()` | `Código de barra de boleto de convênio inválido.` |
+| `BoletoKitInvalidBoletoConvenioWritableLineException` | `boletoConvenio()->toBarcode()` | `Linha digitável de boleto de convênio inválida.` |
 
 > **Atenção:** nos métodos de detecção automática (`BoletoKit::toBarcode` e `BoletoKit::toWritableLine`), quando o valor não é um boleto bancário válido a lib tenta tratá-lo como convênio. Por isso, um valor inválido resulta em uma exceção **de convênio**. Se precisar diferenciar, valide antes com `BoletoKit::isValid()` ou capture `\Exception`.
 
@@ -162,16 +170,18 @@ Exceções disponíveis em `BoletoKit\Exceptions` (todas estendem `\Exception`):
 | | Boleto bancário | Boleto de convênio |
 | --- | --- | --- |
 | Uso típico | Cobrança emitida por bancos | Contas de consumo (água, luz, telefone), tributos e taxas |
-| Código de barras | 44 dígitos | 44 dígitos, sempre começando com `8` |
+| Código de barras | 44 dígitos (formato ISPB começa com `988`) | 44 dígitos, sempre começando com `8` |
 | Linha digitável | 47 dígitos (5 campos) | 48 dígitos (4 blocos de 11 + DV) |
-| Dígitos verificadores | Módulo 10 (campos) e módulo 11 (geral) | Módulo 10 ou 11, conforme o identificador de valor (3º dígito) |
+| Dígitos verificadores | Módulo 10 (campos) e módulo 11 (geral) | Conforme o identificador de valor (3º dígito): `6` ou `7` → módulo 10; `8` ou `9` → módulo 11 |
 
 ## Testes
 
 ```bash
 composer install
-vendor/bin/phpunit src/tests
+vendor/bin/phpunit
 ```
+
+O `phpunit.xml` na raiz executa as suítes `tests/Unit` e `tests/Feature`.
 
 ## Referências
 
@@ -184,9 +194,9 @@ vendor/bin/phpunit src/tests
 Contribuições são bem-vindas!
 
 1. Faça um fork do projeto
-2. Crie uma branch para sua feature ou correção (`git checkout -b feature/minha-feature`)
+2. Crie uma branch para sua feature ou correção (`git checkout -b feature/minha-feature develop`)
 3. Adicione testes cobrindo a alteração
-4. Garanta que todos os testes passam (`vendor/bin/phpunit src/tests`)
+4. Garanta que todos os testes passam (`vendor/bin/phpunit`)
 5. Abra um Pull Request
 
 ## Licença

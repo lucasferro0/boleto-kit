@@ -1,6 +1,6 @@
 <?php
 
-namespace BoletoKit\tests\Feature\Management;
+namespace BoletoKit\Tests\Feature\Management;
 
 use BoletoKit\Management\BoletoConvenioManager;
 use PHPUnit\Framework\TestCase;

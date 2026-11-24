@@ -1,6 +1,6 @@
 <?php
 
-namespace BoletoKit\tests\Unit\ModuleCalculate;
+namespace BoletoKit\Tests\Unit\ModuleCalculate;
 
 use BoletoKit\ModuleCalculate\Module10Calculate;
 use PHPUnit\Framework\TestCase;

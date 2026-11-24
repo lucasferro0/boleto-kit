@@ -1,6 +1,6 @@
 <?php
 
-namespace BoletoKit\tests\Feature\Parser\BoletoConvenio;
+namespace BoletoKit\Tests\Feature\Parser\BoletoConvenio;
 
 use BoletoKit\Parser\BoletoConvenio\BoletoConvenioLinhaDigitavel;
 use PHPUnit\Framework\TestCase;

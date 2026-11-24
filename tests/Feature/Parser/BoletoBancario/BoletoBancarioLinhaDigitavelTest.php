@@ -1,6 +1,6 @@
 <?php
 
-namespace BoletoKit\tests\Feature\Parser\BoletoBancario;
+namespace BoletoKit\Tests\Feature\Parser\BoletoBancario;
 
 use BoletoKit\Parser\BoletoBancario\BoletoBancarioLinhaDigitavel;
 use PHPUnit\Framework\TestCase;
