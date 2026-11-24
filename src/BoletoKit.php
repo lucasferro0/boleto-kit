@@ -38,13 +38,16 @@ class BoletoKit
     public static function toWritableLine(string $barcode)
     {
         $boletoBancarioManager = self::boletoBancario();
+        $boletoConvenioManager = self::boletoConvenio();
 
-        $isBoletoBancario = $boletoBancarioManager->isValidBarcode($barcode);
+        // Um código de convênio (começa com 8) também pode passar na validação de bancário
+        $isBoletoBancario = $boletoBancarioManager->isValidBarcode($barcode)
+            && ! $boletoConvenioManager->isValidBarcode($barcode);
 
         if ($isBoletoBancario) {
             return $boletoBancarioManager->toWritableLine($barcode);
         }
 
-        return self::boletoConvenio()->toWritableLine($barcode);
+        return $boletoConvenioManager->toWritableLine($barcode);
     }
 }
