@@ -202,3 +202,5 @@ Contribuições são bem-vindas!
 ## Licença
 
 Distribuída sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+
