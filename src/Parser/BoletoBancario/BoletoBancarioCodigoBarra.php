@@ -38,8 +38,8 @@ class BoletoBancarioCodigoBarra
         $isTipoBanco = $this->isTipoBanco();
         $campoObrigatorio = substr($this->codigoBarra, 0, 19);
 
-        return $isTipoBanco 
-               ? new CodigoBarraTipoBancoCampoObrigatorio($campoObrigatorio) 
+        return $isTipoBanco
+               ? new CodigoBarraTipoBancoCampoObrigatorio($campoObrigatorio)
                : new CodigoBarraTipoIspbCampoObrigatorio($campoObrigatorio);
     }
 

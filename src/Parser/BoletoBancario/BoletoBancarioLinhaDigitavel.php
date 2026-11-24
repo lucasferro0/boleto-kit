@@ -55,8 +55,8 @@ class BoletoBancarioLinhaDigitavel
     {
         $campo1 = substr($this->linhaDigitavel, 0, 10);
 
-        return $this->isTipoBanco() 
-               ? new LinhaDigitavelTipoBancoCampo1($campo1) 
+        return $this->isTipoBanco()
+               ? new LinhaDigitavelTipoBancoCampo1($campo1)
                : new LinhaDigitavelTipoIspbCampo1($campo1);
     }
 
@@ -64,8 +64,8 @@ class BoletoBancarioLinhaDigitavel
     {
         $campo2 = substr($this->linhaDigitavel, 10, 11);
 
-        return $this->isTipoBanco() 
-               ? new LinhaDigitavelTipoBancoCampo2($campo2) 
+        return $this->isTipoBanco()
+               ? new LinhaDigitavelTipoBancoCampo2($campo2)
                : new LinhaDigitavelTipoIspbCampo2($campo2);
     }
 
@@ -73,8 +73,8 @@ class BoletoBancarioLinhaDigitavel
     {
         $campo3 = substr($this->linhaDigitavel, 21, 11);
 
-        return $this->isTipoBanco() 
-               ? new LinhaDigitavelTipoBancoCampo3($campo3) 
+        return $this->isTipoBanco()
+               ? new LinhaDigitavelTipoBancoCampo3($campo3)
                : new LinhaDigitavelTipoIspbCampo3($campo3);
     }
 
@@ -82,8 +82,8 @@ class BoletoBancarioLinhaDigitavel
     {
         $campo4 = substr($this->linhaDigitavel, 32, 1);
 
-        return $this->isTipoBanco() 
-               ? new LinhaDigitavelTipoBancoCampo4($campo4) 
+        return $this->isTipoBanco()
+               ? new LinhaDigitavelTipoBancoCampo4($campo4)
                : new LinhaDigitavelTipoIspbCampo4($campo4);
     }
 
@@ -91,8 +91,8 @@ class BoletoBancarioLinhaDigitavel
     {
         $campo5 = substr($this->linhaDigitavel, 33, 14);
 
-        return $this->isTipoBanco() 
-               ? new LinhaDigitavelTipoBancoCampo5($campo5) 
+        return $this->isTipoBanco()
+               ? new LinhaDigitavelTipoBancoCampo5($campo5)
                : new LinhaDigitavelTipoIspbCampo5($campo5);
     }
 

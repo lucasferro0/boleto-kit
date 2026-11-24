@@ -5,7 +5,6 @@ namespace BoletoKit\Management;
 use BoletoKit\Management\Converter\BoletoBancarioConverter;
 use BoletoKit\Management\Validator\BoletoBancarioValidator;
 
-
 class BoletoBancarioManager
 {
     private BoletoBancarioValidator $boletoBancarioValidator;

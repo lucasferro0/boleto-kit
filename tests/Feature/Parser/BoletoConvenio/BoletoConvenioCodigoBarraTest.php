@@ -12,7 +12,7 @@ class BoletoConvenioCodigoBarraTest extends TestCase
         $codigoBarraRaw = '84690000001244900820899999319301099453529299';
 
         $boletoConvenioCodigoBarra = new BoletoConvenioCodigoBarra($codigoBarraRaw);
-        
+
         $campoObrigatorio = $boletoConvenioCodigoBarra->getCampoObrigatorio();
         $campoLivre = $boletoConvenioCodigoBarra->getCampoLivre();
 

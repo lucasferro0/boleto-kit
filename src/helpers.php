@@ -1,7 +1,8 @@
 <?php
 
 if (! function_exists('debug')) {
-    function debug($value) {
+    function debug($value)
+    {
         var_dump($value);
 
         die;
@@ -9,7 +10,8 @@ if (! function_exists('debug')) {
 }
 
 if (! function_exists('dump')) {
-    function dump($value) {
+    function dump($value)
+    {
         var_dump($value);
     }
 }

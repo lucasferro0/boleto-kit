@@ -12,7 +12,7 @@ class BoletoBancarioCodigoBarraTest extends TestCase
         $codigoBarraRaw = '23797264400002000007094244618305890485822017';
 
         $boletoBancarioCodigoBarra = new BoletoBancarioCodigoBarra($codigoBarraRaw);
-        
+
         $campoObrigatorio = $boletoBancarioCodigoBarra->getCampoObrigatorio();
 
         $this->assertEquals(substr($codigoBarraRaw, 0, 19), $campoObrigatorio);
@@ -30,7 +30,7 @@ class BoletoBancarioCodigoBarraTest extends TestCase
         $codigoBarraRaw = '98801000000182361207094244618305890485822017';
 
         $boletoBancarioCodigoBarra = new BoletoBancarioCodigoBarra($codigoBarraRaw);
-        
+
         $campoObrigatorio = $boletoBancarioCodigoBarra->getCampoObrigatorio();
 
         $this->assertEquals(substr($codigoBarraRaw, 0, 19), $campoObrigatorio);
