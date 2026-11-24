@@ -1,7 +1,8 @@
 name: BoletoKit CI
 on:
   pull_request:
-    types: [opened, reopened]
+    branches:
+      - '*'
 jobs:
   develop:
     name: Develop enviroment
