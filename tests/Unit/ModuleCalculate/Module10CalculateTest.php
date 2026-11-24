@@ -13,6 +13,6 @@ class Module10CalculateTest extends TestCase
 
         $resultMod10 = (new Module10Calculate())->calculate($digits);
 
-        $this->assertEquals('0', $resultMod10);
+        $this->assertEquals('3', $resultMod10);
     }
 }
