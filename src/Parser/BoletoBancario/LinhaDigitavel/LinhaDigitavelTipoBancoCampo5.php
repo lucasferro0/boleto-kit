@@ -30,10 +30,6 @@ class LinhaDigitavelTipoBancoCampo5 extends LinhaDigitavelCampo
             }
         }
 
-        if ($this->getFatorVencimento() == str_repeat('0', 4)) {
-            return false;
-        }
-
         if ($this->getValorBoleto() == str_repeat('0', 10)) {
             return false;
         }

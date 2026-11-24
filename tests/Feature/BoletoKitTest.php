@@ -135,6 +135,34 @@ class BoletoKitTest extends TestCase
         $this->assertFalse($isValid);
     }
 
+    public function test_is_valid_with_boleto_bancario_barcode_sem_vencimento()
+    {
+        $isValid = BoletoKit::isValid('26091000000002000002547643928578012461618527');
+
+        $this->assertTrue($isValid);
+    }
+
+    public function test_is_valid_with_boleto_bancario_writable_line_sem_vencimento()
+    {
+        $isValid = BoletoKit::isValid('26092.54764 43928.578012 24616.185278 1 00000000200000');
+
+        $this->assertTrue($isValid);
+    }
+
+    public function test_to_writable_line_method_with_boleto_bancario_barcode_sem_vencimento()
+    {
+        $writableLine = BoletoKit::toWritableLine('26091000000002000002547643928578012461618527');
+
+        $this->assertEquals('26092547644392857801224616185278100000000200000', $writableLine);
+    }
+
+    public function test_to_barcode_method_with_boleto_bancario_writable_line_sem_vencimento()
+    {
+        $barcode = BoletoKit::toBarcode('26092547644392857801224616185278100000000200000');
+
+        $this->assertEquals('26091000000002000002547643928578012461618527', $barcode);
+    }
+
     public function test_to_writable_line_method_with_boleto_convenio_barcode_tambem_valido_como_bancario()
     {
         $writableLine = BoletoKit::toWritableLine('82793375762833192470822765444463478612213878');
