@@ -1,0 +1,122 @@
+name: 🐛 Reportar bug
+description: Algo não funciona como esperado (validação, conversão, exceção inesperada etc.)
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reservar um tempo para reportar um problema! 🙏
+
+        Antes de continuar, verifique se já não existe uma [issue aberta](https://github.com/lucasferro0/boleto-kit/issues?q=is%3Aissue) sobre o mesmo assunto.
+
+        > ⚠️ **Atenção:** não publique boletos reais que contenham dados sensíveis. Se possível, use um código de barras/linha digitável de exemplo que reproduza o problema.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do problema
+      description: Descreva de forma clara e objetiva o que está acontecendo.
+      placeholder: Ao converter uma linha digitável de convênio para código de barras, o dígito verificador retornado está incorreto...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: boleto-type
+    attributes:
+      label: Tipo de boleto
+      description: Qual tipo de boleto está envolvido no problema?
+      options:
+        - Boleto bancário (cobrança)
+        - Boleto bancário ISPB (iniciado por 988)
+        - Boleto de convênio (arrecadação)
+        - Detecção automática / não sei
+        - Não se aplica
+    validations:
+      required: true
+
+  - type: dropdown
+    id: method
+    attributes:
+      label: Método utilizado
+      description: Quais métodos estão envolvidos? (selecione um ou mais)
+      multiple: true
+      options:
+        - BoletoKit::isValid()
+        - BoletoKit::toBarcode()
+        - BoletoKit::toWritableLine()
+        - isValidBarcode()
+        - isValidWritableLine()
+        - Helper (src/helpers.php)
+        - Outro
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Como reproduzir
+      description: Forneça um trecho de código mínimo que reproduza o problema, incluindo a entrada utilizada.
+      render: php
+      placeholder: |
+        use BoletoKit\BoletoKit;
+
+        $resultado = BoletoKit::toBarcode('83670000000150000101234567890123456789012345');
+        var_dump($resultado);
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+      description: O que você esperava que acontecesse?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Resultado obtido
+      description: O que aconteceu de fato? Inclua mensagens de erro e stack trace, se houver.
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: lib-version
+    attributes:
+      label: Versão do Boleto Kit
+      description: Execute `composer show lucasferro0/boleto-kit` para descobrir.
+      placeholder: ex. 1.2.0
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: Versão do PHP
+      description: Execute `php -v` para descobrir.
+      placeholder: ex. 7.4.33
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Informações adicionais
+      description: Sistema operacional, framework utilizado, referência à especificação FEBRABAN ou qualquer outro contexto útil.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: Pesquisei as issues existentes e não encontrei uma igual.
+          required: true
+        - label: Confirmei que o problema ocorre na versão mais recente da biblioteca.
+          required: false
+        - label: Removi quaisquer dados sensíveis/reais dos exemplos fornecidos.
+          required: true

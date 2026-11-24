@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentação
+    url: https://github.com/lucasferro0/boleto-kit#readme
+    about: Consulte o README com exemplos de uso antes de abrir uma issue.
+  - name: 🔒 Reportar vulnerabilidade de segurança
+    url: https://github.com/lucasferro0/boleto-kit/security/advisories/new
+    about: Não abra issues públicas para falhas de segurança. Reporte de forma privada por aqui.
