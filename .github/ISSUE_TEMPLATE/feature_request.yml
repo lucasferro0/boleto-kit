@@ -1,0 +1,74 @@
+name: ✨ Sugerir funcionalidade
+description: Proponha uma nova funcionalidade ou melhoria para a biblioteca
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pela sugestão! 💡
+
+        Antes de continuar, verifique se a funcionalidade já não foi sugerida nas [issues existentes](https://github.com/lucasferro0/boleto-kit/issues?q=is%3Aissue+label%3Aenhancement).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qual problema essa funcionalidade resolve?
+      description: 'Descreva a motivação. Ex.: "Sempre fico frustrado quando..."'
+      placeholder: Preciso extrair o valor e a data de vencimento de um boleto bancário, mas hoje a lib só valida e converte...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução proposta
+      description: Descreva como você imagina que a funcionalidade deveria funcionar. Exemplos de API são muito bem-vindos.
+      render: php
+      placeholder: |
+        $info = BoletoKit::boletoBancario()->parse('26099264400002000002547643928578012461618527');
+        $info->getValor();      // 20.00
+        $info->getVencimento(); // DateTimeImmutable
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      description: Descreva soluções ou contornos alternativos que você considerou.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Área relacionada
+      options:
+        - Boleto bancário
+        - Boleto de convênio
+        - Validação
+        - Conversão
+        - API pública / ergonomia
+        - Documentação
+        - Outro
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Referências
+      description: Links para especificações (FEBRABAN, BACEN etc.), outras bibliotecas ou materiais de apoio.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribuição
+      options:
+        - label: Pesquisei as issues existentes e não encontrei uma sugestão igual.
+          required: true
+        - label: Tenho interesse em implementar essa funcionalidade e abrir um Pull Request.
+          required: false

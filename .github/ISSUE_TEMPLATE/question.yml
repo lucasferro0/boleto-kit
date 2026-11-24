@@ -1,0 +1,34 @@
+name: ❓ Dúvida
+description: Tire dúvidas sobre o uso da biblioteca
+title: "[Dúvida]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de perguntar, confira o [README](https://github.com/lucasferro0/boleto-kit#readme) — muitas dúvidas comuns já estão respondidas lá.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Qual é a sua dúvida?
+      description: Descreva o que você está tentando fazer e onde está com dificuldade.
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Código relacionado
+      description: Se aplicável, inclua o trecho de código que você está utilizando.
+      render: php
+    validations:
+      required: false
+
+  - type: input
+    id: lib-version
+    attributes:
+      label: Versão do Boleto Kit
+      placeholder: ex. 1.2.0
+    validations:
+      required: false
