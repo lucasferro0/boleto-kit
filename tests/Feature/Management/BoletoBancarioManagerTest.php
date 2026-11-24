@@ -68,7 +68,7 @@ class BoletoBancarioManagerTest extends TestCase
     {
         $boletoBancarioManager = new BoletoBancarioManager();
 
-        $isValid = $boletoBancarioManager->isValid('98800000060114971860168524522114000000018236120');
+        $isValid = $boletoBancarioManager->isValid('98800000060114971860168524522114100000018236120');
 
         $this->assertTrue($isValid);
     }
@@ -77,29 +77,78 @@ class BoletoBancarioManagerTest extends TestCase
     {
         $boletoBancarioManager = new BoletoBancarioManager();
 
-        $isValid = $boletoBancarioManager->isValid('98800.00006 01149.718601 68524.522114 0 00000018236120');
+        $isValid = $boletoBancarioManager->isValid('98800.00006 01149.718601 68524.522114 1 00000018236120');
 
         $this->assertTrue($isValid);
     }
 
     public function test_to_barcode_method_works_with_boleto_bancario_writable_line_tipo_ispb()
     {
-        $barcode = (new BoletoBancarioManager())->toBarcode('98800000060114971860168524522114000000018236120');
+        $barcode = (new BoletoBancarioManager())->toBarcode('98800000060114971860168524522114100000018236120');
 
-        $this->assertEquals('98800000000182361200000001149718606852452211', $barcode);
+        $this->assertEquals('98801000000182361200000001149718606852452211', $barcode);
     }
 
     public function test_to_barcode_method_works_with_boleto_bancario_writable_line_formated_tipo_ispb()
     {
-        $barcode = (new BoletoBancarioManager())->toBarcode('98800.00006 01149.718601 68524.522114 0 00000018236120');
+        $barcode = (new BoletoBancarioManager())->toBarcode('98800.00006 01149.718601 68524.522114 1 00000018236120');
 
-        $this->assertEquals('98800000000182361200000001149718606852452211', $barcode);
+        $this->assertEquals('98801000000182361200000001149718606852452211', $barcode);
     }
 
     public function test_to_writable_line_method_works_with_boleto_bancario_barcode_tipo_ispb()
     {
-        $writableLine = (new BoletoBancarioManager())->toWritableLine('98800000000182361200000001149718606852452211');
+        $writableLine = (new BoletoBancarioManager())->toWritableLine('98801000000182361200000001149718606852452211');
 
-        $this->assertEquals('98800000060114971860168524522114000000018236120', $writableLine);
+        $this->assertEquals('98800000060114971860168524522114100000018236120', $writableLine);
+    }
+
+    public function test_is_valid_method_works_with_boleto_bancario_barcode_digito_verificador_1_resto_0()
+    {
+        $isValid = (new BoletoBancarioManager())->isValid('26091264400000200002547643928578012461618527');
+
+        $this->assertTrue($isValid);
+    }
+
+    public function test_is_valid_method_works_with_boleto_bancario_barcode_digito_verificador_1_resto_1()
+    {
+        $isValid = (new BoletoBancarioManager())->isValid('26091264400000200042547643928578012461618527');
+
+        $this->assertTrue($isValid);
+    }
+
+    public function test_is_valid_method_works_with_boleto_bancario_writable_line_digito_verificador_1()
+    {
+        $isValid = (new BoletoBancarioManager())->isValid('26092547644392857801224616185278126440000020000');
+
+        $this->assertTrue($isValid);
+    }
+
+    public function test_to_writable_line_method_works_with_boleto_bancario_barcode_digito_verificador_1()
+    {
+        $writableLine = (new BoletoBancarioManager())->toWritableLine('26091264400000200002547643928578012461618527');
+
+        $this->assertEquals('26092547644392857801224616185278126440000020000', $writableLine);
+    }
+
+    public function test_to_barcode_method_works_with_boleto_bancario_writable_line_digito_verificador_1()
+    {
+        $barcode = (new BoletoBancarioManager())->toBarcode('26092547644392857801224616185278126440000020000');
+
+        $this->assertEquals('26091264400000200002547643928578012461618527', $barcode);
+    }
+
+    public function test_is_valid_method_rejects_boleto_bancario_barcode_digito_verificador_0()
+    {
+        $isValid = (new BoletoBancarioManager())->isValid('26090264400000200002547643928578012461618527');
+
+        $this->assertFalse($isValid);
+    }
+
+    public function test_is_valid_method_rejects_boleto_bancario_writable_line_digito_verificador_0()
+    {
+        $isValid = (new BoletoBancarioManager())->isValid('26092547644392857801224616185278026440000020000');
+
+        $this->assertFalse($isValid);
     }
 }

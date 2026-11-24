@@ -4,7 +4,7 @@ namespace BoletoKit\Parser\BoletoBancario;
 
 use BoletoKit\Exceptions\BoletoKitInvalidBoletoBancarioBarcodeException;
 use BoletoKit\ModuleCalculate\Module10Calculate;
-use BoletoKit\ModuleCalculate\Module11Calculate;
+use BoletoKit\ModuleCalculate\Module11BoletoBancarioCalculate;
 use BoletoKit\Parser\BoletoBancario\CodigoBarra\CodigoBarraCampoLivre;
 use BoletoKit\Parser\BoletoBancario\CodigoBarra\CodigoBarraTipoBancoCampoObrigatorio;
 use BoletoKit\Parser\BoletoBancario\CodigoBarra\CodigoBarraTipoIspbCampoObrigatorio;
@@ -67,7 +67,7 @@ class BoletoBancarioCodigoBarra
 
         $codigoBarraSemDigitoVerificador = $this->getCodigoBarraSemDigitoVerificador();
 
-        $digitoVerificadorEsperado = (new Module11Calculate())->calculate($codigoBarraSemDigitoVerificador);
+        $digitoVerificadorEsperado = (new Module11BoletoBancarioCalculate())->calculate($codigoBarraSemDigitoVerificador);
 
         if ($campoObrigatório->getDigitoVerificador() != $digitoVerificadorEsperado) {
             return false;
