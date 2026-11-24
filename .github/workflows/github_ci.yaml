@@ -28,6 +28,11 @@ jobs:
         run: |
           composer install
 
+      - name: Check code style (php-cs-fixer)
+        id: step-php-cs-fixer
+        run: |
+          vendor/bin/php-cs-fixer fix --dry-run --diff
+
       - name: Running Tests
         id: step-tests
         run: |
