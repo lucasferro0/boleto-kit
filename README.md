@@ -1,9 +1,5 @@
 # Boleto Kit
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/lucasferro0/boleto-kit.svg?style=flat-square)](https://packagist.org/packages/lucasferro0/boleto-kit)
-[![PHP Version](https://img.shields.io/packagist/php-v/lucasferro0/boleto-kit.svg?style=flat-square)](https://packagist.org/packages/lucasferro0/boleto-kit)
-[![License](https://img.shields.io/packagist/l/lucasferro0/boleto-kit.svg?style=flat-square)](LICENSE)
-
 Biblioteca PHP para **validar** e **converter** código de barras e linha digitável de boletos bancários e de convênio (arrecadação), seguindo os padrões da FEBRABAN.
 
 ## Recursos
