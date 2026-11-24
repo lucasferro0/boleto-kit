@@ -1,0 +1,31 @@
+name: BoletoKit CI
+on:
+  pull_request:
+    branches:
+      - '*'
+jobs:
+  develop:
+    name: Develop enviroment
+    runs-on: ubuntu-22.04
+    if: ${{ github.base_ref == 'develop' }}
+    steps:
+      - name: Checkout project
+        id: step-checkout-project
+        uses: actions/checkout@v6
+
+      - name: Setup php 7.4
+        id: step-setup-php74
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v2
+      
+      - name: Composer install
+        id: step-composer-install
+        run: |
+          composer install
+      
+      - name: Running Tests
+        id: step-tests
+        run: |
+          vendor/bin/phpunit tests
