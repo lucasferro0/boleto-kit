@@ -3,7 +3,7 @@
 namespace BoletoKit\Parser\BoletoBancario;
 
 use BoletoKit\Exceptions\BoletoKitInvalidBoletoBancarioWritableLineException;
-use BoletoKit\ModuleCalculate\Module11Calculate;
+use BoletoKit\ModuleCalculate\Module11BoletoBancarioCalculate;
 use BoletoKit\Parser\BoletoBancario\LinhaDigitavel\LinhaDigitavelTipoBancoCampo1;
 use BoletoKit\Parser\BoletoBancario\LinhaDigitavel\LinhaDigitavelTipoBancoCampo2;
 use BoletoKit\Parser\BoletoBancario\LinhaDigitavel\LinhaDigitavelTipoBancoCampo3;
@@ -131,7 +131,7 @@ class BoletoBancarioLinhaDigitavel
         $boletoBancarioCodigoBarra = $this->convertToBarcode();
 
         $codigoBarraSemDigitoVerificador = $boletoBancarioCodigoBarra->getCodigoBarraSemDigitoVerificador();
-        $digitoVerificadorEsperado = (new Module11Calculate())->calculate($codigoBarraSemDigitoVerificador);
+        $digitoVerificadorEsperado = (new Module11BoletoBancarioCalculate())->calculate($codigoBarraSemDigitoVerificador);
 
         if ($campo4 != ((string) $digitoVerificadorEsperado)) {
             return false;

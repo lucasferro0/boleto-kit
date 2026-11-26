@@ -6,6 +6,23 @@ class Module11Calculate
 {
     public function calculate(string $value)
     {
+        $resto = $this->calculateResto($value);
+
+        if (in_array($resto, [0, 1])) {
+            return 0;
+        }
+
+        if ($resto == 10) {
+            return 1;
+        }
+
+        $resultMod11 = 11 - $resto;
+
+        return $resultMod11;
+    }
+
+    protected function calculateResto(string $value)
+    {
         $sequence = [2, 3, 4, 5, 6, 7, 8, 9];
 
         $digits = [];
@@ -34,18 +51,6 @@ class Module11Calculate
             $cont += 1;
         }
 
-        $resto = $total % 11;
-
-        if (in_array($resto, [0, 1])) {
-            return 0;
-        }
-
-        if ($resto == 10) {
-            return 1;
-        }
-
-        $resultMod11 = 11 - $resto;
-
-        return $resultMod11;
+        return $total % 11;
     }
 }
