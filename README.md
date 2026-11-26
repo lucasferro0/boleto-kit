@@ -14,7 +14,7 @@ Biblioteca PHP para **validar** e **converter** código de barras e linha digit�
 
 ## Requisitos
 
-- PHP 7.4 (`^7.4`, conforme `composer.json`)
+- PHP 8.1 ou superior (`^8.1`, conforme `composer.json`)
 
 ## Instalação
 
