@@ -20,7 +20,7 @@ class BoletoBancarioManager
 
     public function isValid(string $barcodeOrWritableLine)
     {
-        return $this->boletoBancarioValidator->isValid($barcodeOrWritableLine);
+        return $this->isValidBarcode($barcodeOrWritableLine) || $this->isValidWritableLine($barcodeOrWritableLine);
     }
 
     public function isValidBarcode(string $barcode)

@@ -134,4 +134,18 @@ class BoletoKitTest extends TestCase
 
         $this->assertFalse($isValid);
     }
+
+    public function test_to_writable_line_method_with_boleto_convenio_barcode_tambem_valido_como_bancario()
+    {
+        $writableLine = BoletoKit::toWritableLine('82793375762833192470822765444463478612213878');
+
+        $this->assertEquals('827933757623833192470825276544446343786122138781', $writableLine);
+    }
+
+    public function test_to_writable_line_method_with_boleto_convenio_barcode_tambem_valido_como_bancario_sem_vencimento()
+    {
+        $writableLine = BoletoKit::toWritableLine('82690000001500026865635515058770658948113114');
+
+        $this->assertEquals('826900000017500026865633551505877060589481131144', $writableLine);
+    }
 }

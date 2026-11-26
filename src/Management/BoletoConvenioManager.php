@@ -20,7 +20,7 @@ class BoletoConvenioManager
 
     public function isValid(string $barcodeOrWritableLine)
     {
-        return $this->boletoConvenioValidator->isValid($barcodeOrWritableLine);
+        return $this->isValidBarcode($barcodeOrWritableLine) || $this->isValidWritableLine($barcodeOrWritableLine);
     }
 
     public function isValidBarcode(string $barcode)
